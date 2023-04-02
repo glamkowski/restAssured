@@ -48,4 +48,21 @@ public class UpdatePost {
 
     }
 
+    @Test
+    public void updatePostUsingModelSkippingNull () {
+
+        Post2 postWithNull = new Post2();
+        postWithNull.setTitle("titleWithoutBody1");
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(postWithNull)
+        .when()
+                .put("http://localhost:3000/posts/1")
+        .then()
+                .log()
+                .body();
+
+    }
+
 }
