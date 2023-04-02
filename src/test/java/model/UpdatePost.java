@@ -65,4 +65,20 @@ public class UpdatePost {
 
     }
 
+    @Test
+    public void   () {
+
+        Post2 postToPatch = new Post2();
+        postToPatch.setTitle("titleAfertPatch1");
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(postToPatch)
+        .when()
+                .patch("http://localhost:3000/posts/1")
+        .then()
+                .log()
+                .body();
+    }
+
 }
