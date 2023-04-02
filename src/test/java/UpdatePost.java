@@ -1,7 +1,6 @@
-package model;
-
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
+import model.Post2;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -23,7 +22,7 @@ public class UpdatePost {
                 .contentType(ContentType.JSON)
                 .body(bodyToUpdate)
         .when()
-                .put("http://localhost:3000/posts/1")
+                .put("http://localhost:3000/posts/{postId}", 1)
         .then()
                 .log()
                 .all();
@@ -36,12 +35,13 @@ public class UpdatePost {
         File updatePost = new File("src/test/resources/updatePost.json");
 
         given()
+                .pathParam("postId", 1)
                 .contentType(ContentType.JSON)
                 .body(updatePost)
                 .log()
                 .body()
         .when()
-                .put("http://localhost:3000/posts/1")
+                .put("http://localhost:3000/posts/{postId}")
         .then()
                 .log()
                 .ifValidationFails(LogDetail.BODY);
@@ -55,10 +55,11 @@ public class UpdatePost {
         postWithNull.setTitle("titleWithoutBody1");
 
         given()
+                .pathParam("postId", 1)
                 .contentType(ContentType.JSON)
                 .body(postWithNull)
         .when()
-                .put("http://localhost:3000/posts/1")
+                .put("http://localhost:3000/posts/{postId}")
         .then()
                 .log()
                 .body();
@@ -66,7 +67,7 @@ public class UpdatePost {
     }
 
     @Test
-    public void   () {
+    public void updatePostUsingPatch () {
 
         Post2 postToPatch = new Post2();
         postToPatch.setTitle("titleAfertPatch1");
@@ -75,7 +76,7 @@ public class UpdatePost {
                 .contentType(ContentType.JSON)
                 .body(postToPatch)
         .when()
-                .patch("http://localhost:3000/posts/1")
+                .patch("http://localhost:3000/posts/{postId}", 1)
         .then()
                 .log()
                 .body();
