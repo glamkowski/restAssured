@@ -2,6 +2,8 @@ import io.restassured.http.ContentType;
 import model.Post;
 import org.testng.annotations.Test;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -36,8 +38,29 @@ public class AddPost {
         .when()
                 .post("https://jsonplaceholder.typicode.com/posts")
         .then()
+                .statusCode(201)
                 .log()
-                .body();
+                .all();
+    }
+
+    @Test
+    public void addPostUsingMap () {
+
+        Map<String, Object> newMapPost = new HashMap<>();
+        newMapPost.put("title", "titleMap1");
+        newMapPost.put("body", "commentMap1");
+
+        given()
+                .body(newMapPost)
+                .log()
+                .all()
+        .when()
+                .post("https://jsonplaceholder.typicode.com/posts")
+         .then()
+                .log()
+                .ifValidationFails()
+                .statusCode(201);
+
     }
 
 }

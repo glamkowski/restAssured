@@ -7,9 +7,7 @@ public class ShowAllPosts {
     public void getAllPosts() {
         when()
                 .get("https://jsonplaceholder.typicode.com/posts")
-        .then()
-                .log()
-                .all();
+        .then();
     }
 
 }
