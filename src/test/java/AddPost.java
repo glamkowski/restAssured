@@ -55,7 +55,7 @@ public class AddPost {
                 .log()
                 .all()
         .when()
-                .post("https://jsonplaceholder.typicode.com/posts")
+                .post("https://jsonplaceholder.typicode.com/posts/1")
          .then()
                 .log()
                 .ifValidationFails()
