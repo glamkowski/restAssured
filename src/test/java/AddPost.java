@@ -12,7 +12,7 @@ public class AddPost {
     @Test
     public void addPostUsingModel() {
 
-        Post newModelPost = new Post("testTitle1", "testComment1");
+        Post newModelPost = new Post("testTitle1", "testComment1", "Oskar");
 
         given()
                 .contentType(ContentType.JSON)
