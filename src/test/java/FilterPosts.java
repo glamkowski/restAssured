@@ -1,3 +1,4 @@
+import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -5,7 +6,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class FilterPost {
+public class FilterPosts {
 
     @Test
     public void filterPostByAuthor() {
@@ -42,7 +43,8 @@ public class FilterPost {
                 .get("http://localhost:3000/posts")
         .then()
                 .log()
-                .body();
+                .all()
+                .statusLine(Matchers.containsString("OK"));
     }
 
 }

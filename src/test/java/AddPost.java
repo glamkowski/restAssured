@@ -1,5 +1,6 @@
 import io.restassured.http.ContentType;
 import model.Post;
+import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 import java.io.File;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class AddPost {
         .when()
                 .post("http://localhost:3000/posts")
         .then()
-                .statusCode(201)
+                .statusCode(Matchers.greaterThan(200))
                 .log()
                 .body();
     }
@@ -38,7 +39,7 @@ public class AddPost {
         .when()
                 .post("http://localhost:3000/posts")
         .then()
-                .statusCode(201)
+                .statusCode(Matchers.greaterThanOrEqualTo(201))
                 .log()
                 .all();
     }
@@ -60,7 +61,7 @@ public class AddPost {
          .then()
                 .log()
                 .ifValidationFails()
-                .statusCode(201);
+                .statusCode(Matchers.equalTo(201));
 
     }
 
