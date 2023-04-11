@@ -12,6 +12,8 @@ public class FilterPosts {
     public void filterPostByAuthor() {
         given()
                 .queryParam("author", "Oskar")
+                .log()
+                .uri()
         .when()
                 .get("http://localhost:3000/posts")
         .then()

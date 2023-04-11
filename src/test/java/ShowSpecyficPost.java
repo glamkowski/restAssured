@@ -7,7 +7,9 @@ public class ShowSpecyficPost {
 
     @Test
     public void showPost () {
-        given().pathParam("postId", 4)
+
+        given()
+                .pathParam("postId", 4)
         .when()
                 .get("http://localhost:3000/posts/{postId}")
         .then()
